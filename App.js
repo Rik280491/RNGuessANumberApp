@@ -44,6 +44,19 @@ export default function App() {
 	};
 
 	let content = <StartGameScreen onStartGame={startGameHandler} />;
+
+	// ----TESTING----
+
+	content = (
+		<GameOverScreen
+			numOfRounds={1}
+			userNumber={1}
+			onRestart={configureNewGameHandler}
+		/>
+	);
+
+	// ----TESTING----
+
 	if (userNumber && gameDuration === 0) {
 		content = (
 			<GameScreen userChoice={userNumber} onGameOver={gameOverHandler} />
