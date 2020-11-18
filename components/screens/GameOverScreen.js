@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, Button, Image, StyleSheet } from "react-native";
 import TitleText from "../TitleText";
 import BodyText from "../BodyText";
+import MainButton from "../MainButton";
+import Colours from "../../constants/colours";
 
 const GameOverScreen = (props) => {
 	return (
@@ -15,9 +17,16 @@ const GameOverScreen = (props) => {
 				/>
 				{/* for network images: source={{uri: "https://..."}} */}
 			</View>
-			<BodyText>Number of rounds: {props.numOfRounds}</BodyText>
-			<BodyText>Your number was {props.userNumber}</BodyText>
-			<Button title="New Game" onPress={props.onRestart} />
+			<View style={styles.resultContainer}>
+				{/* Unlike other components, styles set on Text components are passed down to nested Text components, and doesn't use flexbox by default */}
+				<BodyText style={styles.resultText}>
+					The app needed{" "}
+					<Text style={styles.highlight}>{props.numOfRounds}</Text> rounds to
+					guess the number{" "}
+					<Text style={styles.highlight}>{props.userNumber}</Text>
+				</BodyText>
+			</View>
+			<MainButton onPress={props.onRestart}>NEW GAME</MainButton>
 		</View>
 	);
 };
@@ -40,6 +49,18 @@ const styles = StyleSheet.create({
 	image: {
 		width: "100%",
 		height: "100%",
+	},
+	resultContainer: {
+		marginHorizontal: 30,
+		marginVertical: 15,
+	},
+	resultText: {
+		textAlign: "center",
+		fontSize: 20,
+	},
+	highlight: {
+		color: Colours.primary,
+		fontFamily: "open-sans-bold",
 	},
 });
 
